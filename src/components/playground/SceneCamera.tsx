@@ -34,7 +34,7 @@ export default function SceneCamera({ preset = "default" }: { preset?: Preset })
     Camera: folder(
       {
         autoRotate:      { value: true,  label: "Auto Rotate"      },
-        autoRotateSpeed: { value: 0.7, min: 0.01, max: 5,   step: 0.01, label: "Rotate Speed"    },
+        autoRotateSpeed: { value: 0.2, min: 0.01, max: 5,   step: 0.01, label: "Rotate Speed"    },
         dampingFactor:   { value: 0.08, min: 0.01, max: 0.3, step: 0.01, label: "Damping"          },
         minDistance:     { value: 3,    min: 1,    max: 20,  step: 0.5,  label: "Min Distance"     },
         maxDistance:     { value: 40,   min: 10,   max: 100, step: 1,    label: "Max Distance"     },

@@ -6,12 +6,11 @@ Source: https://sketchfab.com/3d-models/droideka-42b2a42130f94d73a29eda6ecfdce98
 Title: Droideka
 */
 
-import React, { useRef } from 'react'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 
 export function Droideka() {
   
-  const { nodes, materials, animations } = useGLTF('/droideka.glb')
+  const { nodes, materials } = useGLTF('/droideka.glb')
   
   return (
     <group dispose={null}>

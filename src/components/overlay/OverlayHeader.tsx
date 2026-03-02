@@ -10,7 +10,7 @@ export default function OverlayHeader({ mode }: { mode: SceneMode }) {
     day: "2-digit",
   });
 
-  const dark = mode === "Frame";
+  const dark = false
 
   return (
     <div style={{ position: "absolute", top: 24, left: 28, maxWidth: 320 }}>
