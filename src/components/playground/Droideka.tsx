@@ -5,6 +5,8 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/droideka-42b2a42130f94d73a29eda6ecfdce98f
 Title: Droideka
 */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 
 import { useGLTF } from '@react-three/drei'
 
