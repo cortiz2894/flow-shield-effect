@@ -11,7 +11,7 @@ It includes a fully interactive **3D Playground** to explore every parameter of 
 
 ---
 
-https://github.com/user-attachments/assets/063f030a-c19f-4286-bb16-bac2ad40eb06
+https://github.com/user-attachments/assets/568f9ea0-542c-4ffd-883d-998d49e8dbbb
 
 ---
 
