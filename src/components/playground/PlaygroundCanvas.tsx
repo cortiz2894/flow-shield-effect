@@ -7,13 +7,14 @@ import { LEVA_THEME } from "@/components/shared/theme";
 import SceneContent from "./SceneContent";
 import type { SceneMode } from "./SceneContent";
 import UIOverlay from "@/components/overlay/UIOverlay";
-import OverlayButtons from "@/components/overlay/OverlayButtons";
+import OverlayButtons, { type Preset } from "@/components/overlay/OverlayButtons";
 import LoadingOverlay from "@/components/overlay/LoadingOverlay";
 
 export default function PlaygroundCanvas() {
   const [showGrid, setShowGrid] = useState(true);
   const [hideLeva, setHideLeva] = useState(false);
   const [glbUrl, setGlbUrl] = useState<string | null>(null);
+  const [preset, setPreset] = useState<Preset>("default");
   const [isLoadingModel, setIsLoadingModel] = useState(false);
   const glbUrlRef = useRef<string | null>(null);
 
@@ -41,7 +42,7 @@ export default function PlaygroundCanvas() {
       options: ["Background", "Frame"] as SceneMode[],
       label: "Mode",
     },
-  });
+  }, { collapsed: true });
 
   return (
     <>
@@ -56,11 +57,12 @@ export default function PlaygroundCanvas() {
       <div style={{ position: "fixed", inset: 0 }}>
         <Canvas
           shadows
-          camera={{ position: [8, 6, 8], fov: 50, near: 0.1, far: 200 }}
+          camera={{ position: [8, 5, 8], fov: 50, near: 0.1, far: 200 }}
           gl={{ antialias: true, alpha: false }}
           style={{ background: "#0e0d0c" }}
+          dpr={[1, 2]}
         >
-          <SceneContent showGrid={showGrid} mode={mode} glbUrl={glbUrl} onModelLoaded={handleModelLoaded} />
+          <SceneContent showGrid={showGrid} mode={mode} glbUrl={glbUrl} onModelLoaded={handleModelLoaded} preset={preset} />
         </Canvas>
       </div>
       <UIOverlay mode={mode} />
@@ -72,6 +74,8 @@ export default function PlaygroundCanvas() {
         hasGlb={glbUrl !== null}
         onLoadGlb={handleLoadGlb}
         onClearGlb={handleClearGlb}
+        preset={preset}
+        onSetPreset={setPreset}
       />
       <LoadingOverlay visible={isLoadingModel} />
     </>

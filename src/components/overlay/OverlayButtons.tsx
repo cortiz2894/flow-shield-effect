@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { COLORS } from "@/components/shared/theme";
 import styles from "./OverlayButtons.module.css";
 
+export type Preset = "default" | "droideka";
+
 interface OverlayButtonsProps {
   showGrid: boolean;
   onToggleGrid: () => void;
@@ -12,6 +14,8 @@ interface OverlayButtonsProps {
   hasGlb: boolean;
   onLoadGlb: (file: File) => void;
   onClearGlb: () => void;
+  preset: Preset;
+  onSetPreset: (p: Preset) => void;
 }
 
 export default function OverlayButtons({
@@ -22,6 +26,8 @@ export default function OverlayButtons({
   hasGlb,
   onLoadGlb,
   onClearGlb,
+  preset,
+  onSetPreset,
 }: OverlayButtonsProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -44,6 +50,26 @@ export default function OverlayButtons({
         } as React.CSSProperties
       }
     >
+      {/* Preset selector */}
+      <div className={styles.presetGroup}>
+        <button
+          onClick={() => onSetPreset("default")}
+          className={`${styles.presetBtn} ${preset === "default" ? styles.active : styles.inactive}`}
+          title="Default preset — sphere shield"
+        >
+          Default
+        </button>
+        <button
+          onClick={() => onSetPreset("droideka")}
+          className={`${styles.presetBtn} ${preset === "droideka" ? styles.active : styles.inactive}`}
+          title="Droideka preset — Star Wars droid"
+        >
+          Droideka
+        </button>
+      </div>
+
+      <div className={styles.separator} />
+
       {/* Load GLB */}
       <input
         ref={fileInputRef}

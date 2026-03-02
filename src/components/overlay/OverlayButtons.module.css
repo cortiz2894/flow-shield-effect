@@ -60,3 +60,26 @@
 .fileInput {
   display: none;
 }
+
+/* Preset selector buttons */
+.presetGroup {
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.presetBtn {
+  composes: btn;
+  padding: 0 10px;
+  white-space: nowrap;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.separator {
+  width: 1px;
+  background: var(--overlay-border);
+  margin: 4px 0;
+  pointer-events: none;
+}
