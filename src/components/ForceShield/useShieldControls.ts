@@ -27,6 +27,7 @@ export function useShieldControls(lifeRef: MutableRefObject<number>) {
       fresnelPower:    { value: 1.8,  min: 0.5,  max: 5,   step: 0.1,  label: "Fresnel Power" },
       fresnelStrength: { value: 1.75, min: 0,    max: 3,   step: 0.05, label: "Fresnel Strength" },
       opacity:         { value: 0.76, min: 0,    max: 1,   step: 0.01                         },
+      fadeStart:       { value: 0.0,  min: -1,   max: 1,   step: 0.01, label: "Fade Start"    },
       revealSpeed:     { value: 3.5,  min: 0.5,  max: 5,   step: 0.1                          },
       flashSpeed:      { value: 0.6,  min: 0.5,  max: 8,   step: 0.1                          },
       flashIntensity:  { value: 0.11, min: 0,    max: 1,   step: 0.01                         },

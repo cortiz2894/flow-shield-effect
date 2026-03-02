@@ -49,6 +49,7 @@ export const fragmentShader = /* glsl */ `
   uniform float uHitDuration;
   uniform float uHitIntensity;
   uniform float uHitImpactRadius;
+  uniform float uFadeStart;
 
   varying vec3 vNormal;
   varying vec3 vViewDir;
@@ -228,6 +229,12 @@ export const fragmentShader = /* glsl */ `
 
     float alpha = clamp(intensity*uOpacity*revealMask + revealEdge*uNoiseEdgeIntensity, 0.0, 1.0);
 
+    // ── Bottom fade gradient ──────────────────────────────────────────────────
+    // vObjPos.y / 1.8 normalizes Y to [-1, 1] for the sphere (radius 1.8).
+    // smoothstep(-1, uFadeStart, normY): 0 at the bottom pole, 1 at uFadeStart.
+    float normY = vObjPos.y / 1.8;
+    alpha *= smoothstep(-1.0, uFadeStart, normY);
+
     gl_FragColor = vec4(shieldColor + edgeGlow, alpha);
   }
 `;
@@ -268,6 +275,7 @@ export function createShieldMaterial(): THREE.ShaderMaterial {
       uHitDuration:         { value: 1.8 },
       uHitIntensity:        { value: 4.1 },
       uHitImpactRadius:     { value: 0.30 },
+      uFadeStart:           { value: 0.0 },
     },
     vertexShader,
     fragmentShader,

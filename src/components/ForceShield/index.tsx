@@ -29,7 +29,7 @@ function Shield({ isActive = false, posYOverride, preset }: ShieldProps) {
     debugAlwaysOn, manualReveal, revealProgress,
     posX, posY, posZ, scale, color,
     hexScale, hexOpacity, showHex, edgeWidth,
-    fresnelPower, fresnelStrength, opacity, revealSpeed,
+    fresnelPower, fresnelStrength, opacity, fadeStart, revealSpeed,
     flashSpeed, flashIntensity,
     noiseScale, noiseEdgeColor, noiseEdgeWidth, noiseEdgeIntensity, noiseEdgeSmoothness,
     flowScale, flowSpeed, flowIntensity,
@@ -66,6 +66,7 @@ function Shield({ isActive = false, posYOverride, preset }: ShieldProps) {
     u.uFresnelPower.value     = fresnelPower;
     u.uFresnelStrength.value  = fresnelStrength;
     u.uOpacity.value          = opacity;
+    u.uFadeStart.value        = fadeStart;
     u.uFlashSpeed.value       = flashSpeed;
     u.uFlashIntensity.value   = flashIntensity;
     u.uNoiseScale.value       = noiseScale;
@@ -84,7 +85,7 @@ function Shield({ isActive = false, posYOverride, preset }: ShieldProps) {
     u.uHitImpactRadius.value  = hitImpactRadius;
   }, [
     color, hexScale, hexOpacity, showHex, edgeWidth,
-    fresnelPower, fresnelStrength, opacity,
+    fresnelPower, fresnelStrength, opacity, fadeStart,
     flashSpeed, flashIntensity,
     noiseScale, noiseEdgeColor, noiseEdgeWidth, noiseEdgeIntensity, noiseEdgeSmoothness,
     flowScale, flowSpeed, flowIntensity,

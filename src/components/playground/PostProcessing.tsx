@@ -44,7 +44,7 @@ export default function PostProcessing() {
     ),
     Noise: folder(
       {
-        noiseOpacity:  { value: 0.25, min: 0, max: 1, step: 0.01, label: "Opacity"     },
+        noiseOpacity:  { value: 0.17, min: 0, max: 1, step: 0.01, label: "Opacity"     },
         noiseBlend:    { value: "OVERLAY" as BlendOption, options: [...BLEND_OPTIONS], label: "Blend Mode" },
         premultiply:   { value: false, label: "Premultiply" },
       },

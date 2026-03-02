@@ -1,9 +1,9 @@
-# Creative Boilerplate
+# Force Shield VFX
 
-A modern creative development boilerplate built with Next.js, Three.js, and React Three Fiber.  
-This repository is my personal production-ready setup for building interactive 3D experiences, experiments, and client projects.
+A real-time force shield effect built with React Three Fiber, Three.js, and custom GLSL shaders.
+This repository is a free open-source resource for the creative development community.
 
-It includes a fully integrated **3D Playground** to quickly prototype scenes, test lighting setups, import GLB models, and iterate visually in real time.
+It includes a fully interactive **3D Playground** to explore every parameter of the shield in real time — hex grid, hit impacts, life system, reveal animation, bloom, and more.
 
 ![Next.js](https://img.shields.io/badge/Next.js-16.1-black?style=flat-square&logo=next.js)
 ![Three.js](https://img.shields.io/badge/Three.js-0.182-black?style=flat-square&logo=three.js)
@@ -13,47 +13,80 @@ It includes a fully integrated **3D Playground** to quickly prototype scenes, te
 
 https://github.com/user-attachments/assets/063f030a-c19f-4286-bb16-bac2ad40eb06
 
+---
 
 ## ✨ What is this?
 
-**Creative Boilerplate** is the exact foundation I use for:
+**Force Shield VFX** is a production-quality WebGL shield effect built entirely with custom vertex and fragment shaders.
+It is designed as a learning resource and a starting point for similar VFX in interactive 3D projects.
 
-- Client 3D experiences  
-- Interactive landing pages  
-- Creative coding experiments  
-- WebGL playgrounds  
-- Real-time shader explorations  
+Key highlights:
 
-This project is in **constant active development**, meaning dependencies and technologies are kept up to date. You can rely on this setup being aligned with the current ecosystem standards.
+- Fully parametric — every visual property exposed via GUI
+- Written in clean, well-commented GLSL
+- Organized codebase: shaders, controls, and constants are split into separate files
+- Two ready-to-use scene presets (Default and Droideka)
+- Zero external shader libraries — everything is hand-written
+
+---
+
+## 🛡 Shield Features
+
+### Visual
+- **Hex grid** — tri-planar projection with cube-face selection and seam fade
+- **Fresnel glow** — edge highlight driven by view angle
+- **Flow noise** — animated surface disturbance using layered simplex noise
+- **Cell flash** — per-hex random flicker
+- **Bottom fade** — configurable gradient that dissolves the shield toward the ground
+- **Life color** — shield shifts from its base color to red as health depletes
+
+### Hit System
+- **Ring buffer** — up to 6 simultaneous hit impacts tracked in parallel
+- **Expanding ring** — noisy geodesic wavefront that radiates from the impact point
+- **Hex highlight zone** — cells near the impact flash on contact
+- **Life damage** — each hit reduces shield health by a configurable percentage
+- **Reset** — one-click life restore via GUI
+
+### Reveal Animation
+- **Noise-based dissolve** — shield materializes and dematerializes through a simplex noise mask
+- **Edge glow** — emissive border traces the dissolve front
+- **Manual mode** — scrub the reveal progress manually via slider
+
+### Post-processing
+- **Bloom** — luminance-threshold bloom with mipmap blur
+- **Film noise** — configurable grain with blend mode and opacity controls
 
 ---
 
 ## 🎮 3D Playground
 
-A built-in development environment designed for rapid iteration and scene exploration.
+A built-in development environment for exploring the effect in context.
 
-### Features
+### Scene Controls
+- Orbit camera with auto-rotate, damping, and FOV
+- Real-time ambient and directional light manipulation
+- HDRI environment with background blur and intensity
+- Infinite grid floor with reflective plane
+- GLB model import for custom scene compositions
 
-- Orbit camera controls
-- Real-time light manipulation
-- Environment / HDRI support
-- Shadow configuration
-- GLB model import & preview
-- Transform controls (position, rotation, scale)
-- Live parameter tweaking via GUI
+### Presets
+| Preset | Description |
+|--------|-------------|
+| **Default** | Floating shield sphere in a neutral scene |
+| **Droideka** | Shield wrapped around a Star Wars Droideka model |
 
-The playground allows you to quickly test lighting setups, validate models, explore materials, and prototype interactions before moving into production code.
+Switching presets instantly applies a curated set of shader, lighting, and scene values.
 
 ---
 
 ## 🛠 Tech Stack
 
 - **Framework:** Next.js 16.1 (App Router)
-- **3D/WebGL:** Three.js, React Three Fiber
-- **Animation:** GSAP
+- **3D / WebGL:** Three.js, React Three Fiber, Drei
+- **Shaders:** Custom GLSL (vertex + fragment)
+- **Post-processing:** `@react-three/postprocessing`, `postprocessing`
+- **GUI Controls:** Leva
 - **Styling:** Tailwind CSS 4
-- **Controls:** Leva (GUI controls)
-- **Icons:** Lucide React
 - **Language:** TypeScript
 
 ---
@@ -69,10 +102,10 @@ The playground allows you to quickly test lighting setups, validate models, expl
 
 ```bash
 # Clone the repository
-git clone https://github.com/cortiz2894/creative-boilerplate.git
+git clone https://github.com/cortiz2894/shield-vfx.git
 
 # Navigate to the project
-cd creative-boilerplate
+cd shield-vfx
 
 # Install dependencies
 pnpm install
@@ -81,7 +114,22 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the effects.
+Open [http://localhost:3000](http://localhost:3000) to explore the effect.
+
+---
+
+## 📁 Project Structure
+
+```
+src/components/ForceShield/
+  index.tsx             # Main React component — refs, sync, frame loop, JSX
+  useShieldControls.ts  # All Leva GUI controls in one hook
+  shaderMaterial.ts     # Vertex + fragment GLSL and material factory
+  consts/
+    index.ts            # MAX_HITS constant and preset value maps
+```
+
+---
 
 ## 👨‍💻 Author
 
@@ -97,6 +145,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the effects.
 ## 📬 Contact
 
 For inquiries, collaborations or questions: **cortiz2894@gmail.com**
+
 ---
 
 ⭐ If you found this useful, consider subscribing to my [YouTube channel](https://youtube.com/@cortizdev) for more creative development content!
