@@ -118,19 +118,6 @@ Open [http://localhost:3000](http://localhost:3000) to explore the effect.
 
 ---
 
-## 📁 Project Structure
-
-```
-src/components/ForceShield/
-  index.tsx             # Main React component — refs, sync, frame loop, JSX
-  useShieldControls.ts  # All Leva GUI controls in one hook
-  shaderMaterial.ts     # Vertex + fragment GLSL and material factory
-  consts/
-    index.ts            # MAX_HITS constant and preset value maps
-```
-
----
-
 ## 👨‍💻 Author
 
 **Christian Ortiz** - Creative Developer
